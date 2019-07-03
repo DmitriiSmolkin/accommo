@@ -13,8 +13,13 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 Auth::routes(['verify' => true, 'register' => false]);
 
-Route::get('/management', 'ManagementController@dashboard')->name('dashboard');
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::prefix('management')->group(function () {
+        Route::get('/', 'ManagementController@dashboard')->name('dashboard');
+        Route::resource('users', 'Management\UserController');
+    });
+});
