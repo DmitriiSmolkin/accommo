@@ -7,19 +7,34 @@
 @section('content')
 
     <h3 class="m-3">
-        User
-        <small class="text-muted">@foreach($users as $user) {{ $user->name }} @endforeach</small>
+        @foreach($users as $user) {{ $user->name }} @endforeach
+        <small class="text-muted">User</small>
     </h3>
 
     <div class="mx-3">
         @foreach($users as $user)
-            <p>Email: {{ $user->email }}</p>
-            <p>Verified At: {{ $user->email }}</p>
-            <p>Created At: {{ $user->email }}</p>
-            <p>Updated At: {{ $user->email }}</p>
+        <table class="table">
+            <tbody>
+            <tr>
+                <th scope="row">Email</th>
+                <td>{{ $user->email }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Verified at</th>
+                <td>{{ $user->email_verified_at }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Created at</th>
+                <td>{{ $user->created_at }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Updated at</th>
+                <td>{{ $user->updated_at }}</td>
+            </tr>
+            </tbody>
+        </table>
         @endforeach
 
-        <br><br>
         <a href="{{ action('Management\UserController@index') }}" class="btn btn-primary"><i class="fas fa-arrow-left"></i> Back</a>
     </div>
     <br>
