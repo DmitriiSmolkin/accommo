@@ -20,6 +20,7 @@ Auth::routes(['verify' => true, 'register' => false]);
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::prefix('management')->group(function () {
         Route::get('/', 'ManagementController@dashboard')->name('dashboard');
+        Route::resource('galleries', 'Management\GalleryController');
         Route::resource('users', 'Management\UserController');
     });
 });
